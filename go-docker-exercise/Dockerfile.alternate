@@ -1,0 +1,14 @@
+# Despite being shorter, explain why this Dockerfile is
+# worse compared to the original Dockerfile
+
+FROM golang:1.23.3-alpine
+WORKDIR /app
+# Copy all the files needed to run the application
+COPY . .
+# Download all the dependencies
+RUN go mod download
+# Compile the application
+RUN go build -o run .
+EXPOSE 8080
+
+CMD ["./run"]
